@@ -8,6 +8,7 @@ import { AutenticacaoLayoutComponent } from './layouts/autenticacao-layout/auten
 import { CadastroComponent } from './components/cadastro/cadastro.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
     AppRoutingModule,
     NgxMaskDirective,
     NgxMaskPipe,
+    HttpClientModule,
   ],
   providers: [provideNgxMask()],
   bootstrap: [AppComponent],
