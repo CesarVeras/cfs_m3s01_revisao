@@ -7,21 +7,24 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AutenticacaoLayoutComponent } from './layouts/autenticacao-layout/autenticacao-layout.component';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
 import { AppRoutingModule } from './app-routing.module';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     AutenticacaoLayoutComponent,
-    CadastroComponent
+    CadastroComponent,
   ],
   imports: [
-		BrowserModule,
-		RouterModule,
-		ReactiveFormsModule,
-		AppRoutingModule,
+    BrowserModule,
+    RouterModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    NgxMaskDirective,
+    NgxMaskPipe,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [provideNgxMask()],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
