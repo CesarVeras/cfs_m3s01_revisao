@@ -7,8 +7,6 @@ import IPedagogo from '../interfaces/IPedagogo';
   providedIn: 'root',
 })
 export class AuthService {
-  private pedagogoLogado: IPedagogo | undefined;
-
   constructor(private pedagogoService: PedagogoService) {}
 
   async login(email: string, senha: string) {
@@ -17,7 +15,7 @@ export class AuthService {
       const emailCorreto = pedagogo.email == email;
       const senhaCorreta = pedagogo.senha == senha;
       if (emailCorreto && senhaCorreta) {
-        this.pedagogoLogado = pedagogo;
+        localStorage.setItem('usuario', JSON.stringify(pedagogo));
         return;
       }
     }
@@ -26,10 +24,18 @@ export class AuthService {
   }
 
   logout() {
-    this.pedagogoLogado = undefined;
+    localStorage.removeItem('usuario');
+  }
+
+  isLogado() {
+    const pedagogoLogado = localStorage.getItem('usuario');
+    return pedagogoLogado !== null;
   }
 
   obterNomePedagogoLogado() {
-    return this.pedagogoLogado?.nome;
+    const pedagogoString = localStorage.getItem('usuario');
+    if (pedagogoString === null) return;
+    const pedagogoLogado = <IPedagogo>JSON.parse(pedagogoString);
+    return pedagogoLogado?.nome;
   }
 }

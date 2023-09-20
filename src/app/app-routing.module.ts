@@ -5,6 +5,9 @@ import { LoginComponent } from './components/login/login.component';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
 import { AlunosComponent } from './components/alunos/alunos.component';
 import { BaseLayoutComponent } from './layouts/base-layout/base-layout.component';
+import { privadoGuard, publicoGuard } from './guards/autenticacao.guard';
+import { NaoAutorizadoComponent } from './components/nao-autorizado/nao-autorizado.component';
+import { NaoEncontradoComponent } from './components/nao-encontrado/nao-encontrado.component';
 
 const routes: Routes = [
   {
@@ -13,26 +16,38 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: '',
-    component: AutenticacaoLayoutComponent,
-    children: [
-      {
-        path: 'login',
-        component: LoginComponent,
-      },
-      {
-        path: 'cadastro',
-        component: CadastroComponent,
-      },
-    ],
-  },
-  {
     path: 'labschool',
     component: BaseLayoutComponent,
     children: [
       {
         path: 'alunos',
         component: AlunosComponent,
+        canActivate: [privadoGuard],
+      },
+    ],
+  },
+  {
+    path: '',
+    component: AutenticacaoLayoutComponent,
+    children: [
+      {
+        path: 'login',
+        component: LoginComponent,
+        canActivate: [publicoGuard],
+      },
+      {
+        path: 'cadastro',
+        component: CadastroComponent,
+        canActivate: [publicoGuard],
+      },
+      {
+        path: 'nao-autorizado',
+        component: NaoAutorizadoComponent,
+        canActivate: [publicoGuard],
+      },
+      {
+        path: '**',
+        component: NaoEncontradoComponent,
       },
     ],
   },
