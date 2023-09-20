@@ -1,6 +1,10 @@
 <h3>Alunos cadastrados</h3>
-<input type="text" name="nome" id="nome" class="form-control w-25" placeholder="nome do aluno"
-	(input)="onInputChange($event)">
+<div class="d-flex flex-row justify-content-between">
+	<input type="text" name="nome" id="nome" class="form-control w-25" placeholder="nome do aluno"
+		(input)="onInputChange($event)">
+	<button class="btn btn-primary">Cadastrar aluno</button>
+</div>
+<hr>
 <table class="table table-striped">
 	<thead>
 		<tr>
