@@ -1,5 +1,6 @@
 <h3>Alunos cadastrados</h3>
-<input type="text" name="nome" id="nome" class="form-control w-25" placeholder="nome do aluno">
+<input type="text" name="nome" id="nome" class="form-control w-25" placeholder="nome do aluno"
+	(input)="onInputChange($event)">
 <table class="table table-striped">
 	<thead>
 		<tr>
@@ -10,7 +11,7 @@
 			<th>Nota</th>
 		</tr>
 	</thead>
-	<tbody *ngFor="let aluno of alunos">
+	<tbody *ngFor="let aluno of alunosVisiveis">
 		<tr>
 			<td>{{aluno.nome}}</td>
 			<td>{{aluno.telefone}}</td>

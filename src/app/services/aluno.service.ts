@@ -15,7 +15,13 @@ export class AlunoService {
     const alunos = await lastValueFrom(
       this.httpClient.get<IAluno[]>('http://localhost:3000/alunos')
     );
-    console.log(alunos, start, end);
     return alunos.slice(start, end);
+  }
+
+  filtrarAlunos(filtro: string, alunos: IAluno[]) {
+    const alunosFiltrados = alunos.filter((aluno) =>
+      aluno.nome.toLowerCase().includes(filtro.toLowerCase())
+    );
+    return alunosFiltrados;
   }
 }
