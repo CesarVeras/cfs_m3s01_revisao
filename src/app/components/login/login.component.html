@@ -1,20 +1,22 @@
 <h3>Bem vindo(a)!</h3>
 
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-	<div class="form-group">
-		<label for="email" class="form-label">Email</label>
-		<input type="email" class="form-control" id="email" placeholder="usuario@email.com" name="email"
-			formControlName="email">
-	</div>
-	<div class="form-group">
-		<label for="senha" class="form-label">Senha</label>
-		<input type="password" class="form-control" id="senha" placeholder="insira a sua senha" name="senha"
-			formControlName="senha">
-	</div>
-	<button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Entrar</button>
-</form>
+<div class="flex-grow">
+	<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+		<div class="form-group">
+			<label for="email" class="form-label">Email</label>
+			<input type="email" class="form-control" id="email" placeholder="usuario@email.com" name="email"
+				formControlName="email">
+		</div>
+		<div class="form-group">
+			<label for="senha" class="form-label">Senha</label>
+			<input type="password" class="form-control" id="senha" placeholder="insira a sua senha" name="senha"
+				formControlName="senha">
+		</div>
+		<button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Entrar</button>
+	</form>
 
-<div class="create-account">
-	<p>Ainda não possui uma conta?</p>
-	<button class="btn btn-primary" routerLink="/cadastro">Cadastrar</button>
+	<div class="create-account">
+		<p>Ainda não possui uma conta?</p>
+		<button class="btn btn-primary" routerLink="/cadastro">Cadastrar</button>
+	</div>
 </div>

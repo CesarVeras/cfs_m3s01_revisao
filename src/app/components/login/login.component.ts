@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/servies/auth.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { AuthService } from 'src/app/servies/auth.service';
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(private authService: AuthService) {
+  constructor(private router: Router, private authService: AuthService) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.email, Validators.required]),
       senha: new FormControl('', [
@@ -25,7 +26,7 @@ export class LoginComponent {
       const email = this.loginForm.get('email')?.value;
       const senha = this.loginForm.get('senha')?.value;
       await this.authService.login(email, senha);
-      alert('usuário LOGADO!');
+      this.router.navigate(['labschool', 'alunos']);
     } catch (e) {
       alert('credenciais inválidas!');
     }

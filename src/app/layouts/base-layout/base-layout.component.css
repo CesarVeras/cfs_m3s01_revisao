@@ -1,0 +1,23 @@
+.base-page {
+  --padding: 4rem;
+  --margin: 5rem;
+  padding-block: calc(var(--margin) - var(--header)) var(--margin);
+  background-color: #7749f8;
+  min-height: calc(100vh - (2 * var(--margin)));
+  min-height: calc(100dvh - (2 * var(--margin)));
+}
+
+.container-base {
+  width: calc(100vw - 2 * var(--margin));
+  width: calc(100dvw - 2 * var(--margin));
+  min-height: calc(100vh - 2 * var(--margin));
+  min-height: calc(100dvh - 2 * var(--margin));
+  max-width: 1600px;
+  margin-inline: auto;
+  padding: var(--padding) calc(var(--padding) * 1.5);
+  border-radius: 10px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}

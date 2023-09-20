@@ -1,20 +1,19 @@
 .login-page {
   background-color: #7749f8;
-  min-height: 100vh;
-  min-height: 100dvh;
+  position: absolute;
+  inset: 0;
 }
 
 .container-login {
-  position: relative;
-  width: 40%;
-  margin-block: 5rem;
+  --padding: 4rem;
+  position: absolute;
+  inset: 5rem 10rem;
+  max-width: 750px;
   margin-inline: auto;
-  padding: 4rem 6rem;
+  padding: var(--padding) 6rem;
   border-radius: 10px;
   background-color: #fff;
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  min-height: 70vh;
-  min-height: 70dvh;
 }

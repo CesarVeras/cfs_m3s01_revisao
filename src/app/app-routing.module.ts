@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AutenticacaoLayoutComponent } from './layouts/autenticacao-layout/autenticacao-layout.component';
 import { LoginComponent } from './components/login/login.component';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
+import { AlunosComponent } from './components/alunos/alunos.component';
+import { BaseLayoutComponent } from './layouts/base-layout/base-layout.component';
 
 const routes: Routes = [
   {
@@ -21,6 +23,16 @@ const routes: Routes = [
       {
         path: 'cadastro',
         component: CadastroComponent,
+      },
+    ],
+  },
+  {
+    path: 'labschool',
+    component: BaseLayoutComponent,
+    children: [
+      {
+        path: 'alunos',
+        component: AlunosComponent,
       },
     ],
   },
