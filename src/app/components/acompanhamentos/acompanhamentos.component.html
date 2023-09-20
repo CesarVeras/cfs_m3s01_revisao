@@ -1,0 +1,48 @@
+<h3>Acompanhamentos pedagógicos</h3>
+<div class="d-flex flex-row justify-content-between">
+	<input type="text" name="nome" id="nome" class="form-control w-25" placeholder="título do acompanhamento"
+		(input)="onInputChange($event)">
+	<button class="btn btn-primary">Cadastrar acompanhamento</button>
+</div>
+<hr>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Título</th>
+			<th>Aluno</th>
+			<th>Pedagogo</th>
+			<th>Data</th>
+			<th>Finalizado</th>
+			<th>Editar</th>
+		</tr>
+	</thead>
+	<tbody *ngFor="let acom of acompanhamentosVisiveis">
+		<tr>
+			<td>{{acom.titulo}}</td>
+			<td>{{acom.aluno}}</td>
+			<td>{{acom.pedagogo}}</td>
+			<td>{{acom.data}}</td>
+			<td>
+				<i *ngIf="acom.finalizado" class="bi bi-check-square"></i>
+				<i *ngIf="!acom.finalizado" class="bi bi-square"></i>
+			</td>
+			<td><button class="btn btn-secondary"><i class="bi bi-pencil-square"></i></button></td>
+		</tr>
+	</tbody>
+</table>
+<nav aria-label="Page navigation example">
+	<ul class="pagination">
+		<li class="page-item">
+			<a class="page-link" aria-label="Previous" (click)="atualizarAcompanhamentos(0, 10)">
+				<span aria-hidden="true">&laquo;</span>
+			</a>
+		</li>
+		<li class="page-item"><a class="page-link" (click)="atualizarAcompanhamentos(0, 10)">1</a></li>
+		<li class="page-item"><a class="page-link" (click)="atualizarAcompanhamentos(1, 10)">2</a></li>
+		<li class="page-item">
+			<a class="page-link" aria-label="Next" (click)="atualizarAcompanhamentos(1, 10)">
+				<span aria-hidden="true">&raquo;</span>
+			</a>
+		</li>
+	</ul>
+</nav>

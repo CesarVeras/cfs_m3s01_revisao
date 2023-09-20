@@ -1,14 +1,19 @@
 nav {
   z-index: 2;
+  --bs-navbar-active-color: #7749f8;
 }
 
 .container-fluid {
-	display: flex;
-	justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .navbar-collapse {
-	flex: 0;
+  flex: 0;
+}
+
+.nav-item.active {
+	font-weight: bold;
 }
 
 .user-info {

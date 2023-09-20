@@ -14,6 +14,7 @@ import { AlunosComponent } from './components/alunos/alunos.component';
 import { BaseLayoutComponent } from './layouts/base-layout/base-layout.component';
 import { NaoAutorizadoComponent } from './components/nao-autorizado/nao-autorizado.component';
 import { NaoEncontradoComponent } from './components/nao-encontrado/nao-encontrado.component';
+import { AcompanhamentosComponent } from './components/acompanhamentos/acompanhamentos.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { NaoEncontradoComponent } from './components/nao-encontrado/nao-encontra
     BaseLayoutComponent,
     NaoAutorizadoComponent,
     NaoEncontradoComponent,
+    AcompanhamentosComponent,
   ],
   imports: [
     BrowserModule,
