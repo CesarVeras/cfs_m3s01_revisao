@@ -1,14 +1,14 @@
-.login-page {
+.base-page {
   background-color: #7749f8;
   position: absolute;
   inset: 0;
 }
 
-.container-login {
+.container-base {
   --padding: 4rem;
   position: absolute;
   inset: 5rem 10rem;
-  max-width: 750px;
+  max-width: 1600px;
   margin-inline: auto;
   padding: var(--padding) 6rem;
   border-radius: 10px;

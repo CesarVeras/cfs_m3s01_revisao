@@ -1,0 +1,23 @@
+nav {
+  z-index: 2;
+}
+
+.container-fluid {
+	display: flex;
+	justify-content: space-between;
+}
+
+.navbar-collapse {
+	flex: 0;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-info p {
+  line-height: 2;
+  margin: 0;
+}

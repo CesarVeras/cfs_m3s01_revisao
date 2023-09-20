@@ -9,6 +9,9 @@ import { CadastroComponent } from './components/cadastro/cadastro.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from './components/shared/header/header.component';
+import { AlunosComponent } from './components/alunos/alunos.component';
+import { BaseLayoutComponent } from './layouts/base-layout/base-layout.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +19,9 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     AutenticacaoLayoutComponent,
     CadastroComponent,
+    HeaderComponent,
+    AlunosComponent,
+    BaseLayoutComponent,
   ],
   imports: [
     BrowserModule,

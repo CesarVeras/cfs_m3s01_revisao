@@ -7,6 +7,8 @@ import IPedagogo from '../interfaces/IPedagogo';
   providedIn: 'root',
 })
 export class AuthService {
+  private pedagogoLogado: IPedagogo | undefined;
+
   constructor(private pedagogoService: PedagogoService) {}
 
   async login(email: string, senha: string) {
@@ -14,9 +16,20 @@ export class AuthService {
     for (const pedagogo of pedagogos) {
       const emailCorreto = pedagogo.email == email;
       const senhaCorreta = pedagogo.senha == senha;
-      if (emailCorreto && senhaCorreta) return;
+      if (emailCorreto && senhaCorreta) {
+        this.pedagogoLogado = pedagogo;
+        return;
+      }
     }
 
     throw new Error('Credenciais inválidas!');
+  }
+
+  logout() {
+    this.pedagogoLogado = undefined;
+  }
+
+  obterNomePedagogoLogado() {
+    return this.pedagogoLogado?.nome;
   }
 }
