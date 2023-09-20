@@ -3,6 +3,8 @@
 }
 
 .create-account {
+  position: absolute;
+  bottom: var(--padding);
   display: flex;
   margin-top: 2rem;
   align-content: center;
