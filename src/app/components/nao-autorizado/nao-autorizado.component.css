@@ -1,0 +1,21 @@
+.form-group {
+  margin-block: 2rem;
+}
+
+.flex-grow {
+  justify-content: space-between;
+}
+
+.create-account {
+  position: absolute;
+  bottom: var(--padding);
+  display: flex;
+  margin-top: 2rem;
+  align-content: center;
+  gap: 1rem;
+}
+
+.create-account p {
+  margin: 0;
+  line-height: 2;
+}

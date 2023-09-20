@@ -12,6 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { AlunosComponent } from './components/alunos/alunos.component';
 import { BaseLayoutComponent } from './layouts/base-layout/base-layout.component';
+import { NaoAutorizadoComponent } from './components/nao-autorizado/nao-autorizado.component';
+import { NaoEncontradoComponent } from './components/nao-encontrado/nao-encontrado.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { BaseLayoutComponent } from './layouts/base-layout/base-layout.component
     HeaderComponent,
     AlunosComponent,
     BaseLayoutComponent,
+    NaoAutorizadoComponent,
+    NaoEncontradoComponent,
   ],
   imports: [
     BrowserModule,
