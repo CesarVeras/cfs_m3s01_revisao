@@ -18,4 +18,10 @@ export class PedagogoService {
       console.error(e);
     }
   }
+
+  async obterPedagogos() {
+    return lastValueFrom(
+      this.httpClient.get<IPedagogo[]>('http://localhost:3000/pedagogos')
+    );
+  }
 }

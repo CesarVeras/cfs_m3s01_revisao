@@ -1,8 +1,8 @@
 export default interface IPedagogo {
-  nome: String;
-  telefone: String;
-  cpf: String;
+  nome: string;
+  telefone: string;
+  cpf: string;
   dataNascimento: Date;
-  email: String;
-  senha: String;
+  email: string;
+  senha: string;
 }
