@@ -1,1 +1,38 @@
-<p>Alunos works!</p>
+<h3>Alunos cadastrados</h3>
+<input type="text" name="nome" id="nome" class="form-control w-25" placeholder="nome do aluno">
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Nome</th>
+			<th>Telefone</th>
+			<th>CPF</th>
+			<th>Data de Nascimento</th>
+			<th>Nota</th>
+		</tr>
+	</thead>
+	<tbody *ngFor="let aluno of alunos">
+		<tr>
+			<td>{{aluno.nome}}</td>
+			<td>{{aluno.telefone}}</td>
+			<td>{{aluno.cpf}}</td>
+			<td>{{aluno.dataNascimento}}</td>
+			<td>{{aluno.nota}}</td>
+		</tr>
+	</tbody>
+</table>
+<nav aria-label="Page navigation example">
+	<ul class="pagination">
+		<li class="page-item">
+			<a class="page-link" aria-label="Previous" (click)="atualizarAlunos(0, 10)">
+				<span aria-hidden="true">&laquo;</span>
+			</a>
+		</li>
+		<li class="page-item"><a class="page-link" (click)="atualizarAlunos(0, 10)">1</a></li>
+		<li class="page-item"><a class="page-link" (click)="atualizarAlunos(1, 10)">2</a></li>
+		<li class="page-item">
+			<a class="page-link" aria-label="Next" (click)="atualizarAlunos(1, 10)">
+				<span aria-hidden="true">&raquo;</span>
+			</a>
+		</li>
+	</ul>
+</nav>

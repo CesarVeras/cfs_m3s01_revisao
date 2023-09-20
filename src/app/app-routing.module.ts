@@ -4,7 +4,6 @@ import { AutenticacaoLayoutComponent } from './layouts/autenticacao-layout/auten
 import { LoginComponent } from './components/login/login.component';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
 import { AlunosComponent } from './components/alunos/alunos.component';
-import { HeaderComponent } from './components/shared/header/header.component';
 import { BaseLayoutComponent } from './layouts/base-layout/base-layout.component';
 
 const routes: Routes = [
