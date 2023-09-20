@@ -1,0 +1,17 @@
+.form-group {
+  margin-block: 2rem;
+}
+
+.create-account {
+	position: absolute;
+	bottom: 3rem;
+  display: flex;
+  margin-top: 2rem;
+  align-content: center;
+  gap: 1rem;
+}
+
+.create-account p {
+  margin: 0;
+  line-height: 2;
+}
