@@ -8,6 +8,7 @@ import { BaseLayoutComponent } from './layouts/base-layout/base-layout.component
 import { privadoGuard, publicoGuard } from './guards/autenticacao.guard';
 import { NaoAutorizadoComponent } from './components/nao-autorizado/nao-autorizado.component';
 import { NaoEncontradoComponent } from './components/nao-encontrado/nao-encontrado.component';
+import { AcompanhamentosComponent } from './components/acompanhamentos/acompanhamentos.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,11 @@ const routes: Routes = [
       {
         path: 'alunos',
         component: AlunosComponent,
+        canActivate: [privadoGuard],
+      },
+      {
+        path: 'acompanhamentos',
+        component: AcompanhamentosComponent,
         canActivate: [privadoGuard],
       },
     ],
