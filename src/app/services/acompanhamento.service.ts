@@ -4,17 +4,18 @@ import { lastValueFrom } from 'rxjs';
 import IAcompanhamentos from '../interfaces/IAcompanhamentos';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AcompanhamentoService {
-
   constructor(private httpClient: HttpClient) {}
 
   async obterAcompanhamentos(page: number, amount: number) {
     const start = page * amount;
     const end = start + amount;
     const acompanhamentos = await lastValueFrom(
-      this.httpClient.get<IAcompanhamentos[]>('http://localhost:3000/acompanhamentos')
+      this.httpClient.get<IAcompanhamentos[]>(
+        'http://localhost:3000/acompanhamentos'
+      )
     );
     return acompanhamentos.slice(start, end);
   }
@@ -24,5 +25,27 @@ export class AcompanhamentoService {
       acom.titulo.toLowerCase().includes(filtro.toLowerCase())
     );
     return acompanhamentosFiltrados;
+  }
+
+  async obterQuantidadeAcompanhamentos() {
+    const acompanhamentos = await lastValueFrom(
+      this.httpClient.get<IAcompanhamentos[]>(
+        'http://localhost:3000/acompanhamentos'
+      )
+    );
+    return acompanhamentos.length;
+  }
+
+  async obterPorcentagemConcluida() {
+    const acompanhamentos = await lastValueFrom(
+      this.httpClient.get<IAcompanhamentos[]>(
+        'http://localhost:3000/acompanhamentos'
+      )
+    );
+    let qntConcluida = 0;
+    acompanhamentos.forEach((acom) => {
+      if (acom.finalizado) qntConcluida++;
+    });
+    return Math.floor((qntConcluida / acompanhamentos.length) * 100);
   }
 }

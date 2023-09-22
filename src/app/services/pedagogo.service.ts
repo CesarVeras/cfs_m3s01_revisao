@@ -24,4 +24,11 @@ export class PedagogoService {
       this.httpClient.get<IPedagogo[]>('http://localhost:3000/pedagogos')
     );
   }
+
+  async obterQuantidadePedagogos() {
+    const pedagogos = await lastValueFrom(
+      this.httpClient.get<IPedagogo[]>('http://localhost:3000/pedagogos')
+    );
+    return pedagogos.length;
+  }
 }

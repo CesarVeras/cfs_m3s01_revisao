@@ -14,12 +14,12 @@ export class AlunosComponent implements OnInit {
   constructor(private alunoService: AlunoService) {}
 
   async ngOnInit() {
-    this.alunosVisiveis = this.alunos = await this.alunoService.obterAlunos(0, 10);	
+    this.alunosVisiveis = this.alunos = await this.alunoService.obterAlunos(0, 20);	
   }
 
   async atualizarAlunos(pagina?: number, quantidade?: number) {
     pagina = pagina || 0;
-    quantidade = quantidade || 10;
+    quantidade = quantidade || 20;
     this.alunosVisiveis = this.alunos = await this.alunoService.obterAlunos(pagina, quantidade);
   }
 

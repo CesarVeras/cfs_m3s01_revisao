@@ -24,4 +24,11 @@ export class AlunoService {
     );
     return alunosFiltrados;
   }
+
+  async obterQuantidadeAlunos() {
+    const alunos = await lastValueFrom(
+      this.httpClient.get<IAluno[]>('http://localhost:3000/alunos')
+    );
+    return alunos.length;
+  }
 }
