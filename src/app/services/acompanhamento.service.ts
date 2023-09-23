@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { lastValueFrom } from 'rxjs';
+import { last, lastValueFrom } from 'rxjs';
 import IAcompanhamentos from '../interfaces/IAcompanhamentos';
 
 @Injectable({
@@ -17,7 +17,16 @@ export class AcompanhamentoService {
         'http://localhost:3000/acompanhamentos'
       )
     );
-		return this.acompanhamentos;
+    return this.acompanhamentos;
+  }
+
+  async cadastrarAcompanhamento(acompanhamento: IAcompanhamentos) {
+    return await lastValueFrom(
+      this.httpClient.post(
+        'http://localhost:3000/acompanhamentos',
+        acompanhamento
+      )
+    );
   }
 
   async obterAcompanhamentosPaginados(page: number, amount: number) {
@@ -55,19 +64,19 @@ export class AcompanhamentoService {
   }
 
   obterAcompanhamentosProximos() {
-    const acompanhamentos =  this.acompanhamentos.filter((a) => {
-			const dataFormatada = this.formatarData(a.data);
-			return dataFormatada.getTime() >= Date.now()
-		});
-		return acompanhamentos.sort((a1, a2) => {
-			const dataFormatada1 = this.formatarData(a1.data);
-			const dataFormatada2 = this.formatarData(a2.data);
-			return dataFormatada1.getTime() - dataFormatada2.getTime();
-		})
+    const acompanhamentos = this.acompanhamentos.filter((a) => {
+      const dataFormatada = this.formatarData(a.data);
+      return dataFormatada.getTime() >= Date.now();
+    });
+    return acompanhamentos.sort((a1, a2) => {
+      const dataFormatada1 = this.formatarData(a1.data);
+      const dataFormatada2 = this.formatarData(a2.data);
+      return dataFormatada1.getTime() - dataFormatada2.getTime();
+    });
   }
 
-	private formatarData(data: Date) {
-		const dataString = data.toString().split('/');
-		return new Date(+dataString[2], +dataString[1] - 1, +dataString[0]);
-	}
+  private formatarData(data: string) {
+    const dataString = data.split('/');
+    return new Date(+dataString[2], +dataString[1] - 1, +dataString[0]);
+  }
 }
