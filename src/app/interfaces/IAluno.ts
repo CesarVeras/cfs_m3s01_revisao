@@ -2,6 +2,6 @@ export default interface IAluno {
   nome: string;
   telefone: string;
   cpf: string;
-  dataNascimento: Date;
+  dataNascimento: string;
   nota: number;
 }
