@@ -10,18 +10,27 @@ import { AcompanhamentoService } from 'src/app/services/acompanhamento.service';
 export class AcompanhamentosComponent {
 	acompanhamentos: IAcompanhamentos[] | undefined;
   acompanhamentosVisiveis: IAcompanhamentos[] | undefined;
+	paginas: number[] = [];
+  paginaAtual: number = 0;
+  quantidadePorPagina: number = 10;
 
   
   constructor(private acompanhamentoService: AcompanhamentoService) {}
 
   async ngOnInit() {
-    this.acompanhamentosVisiveis = this.acompanhamentos = await this.acompanhamentoService.obterAcompanhamentos(0, 10);	
+    this.acompanhamentos = await this.acompanhamentoService.obterAcompanhamentos();	
+    this.acompanhamentosVisiveis = await this.atualizarAcompanhamentos(0);	
+
+		const qnt = Math.ceil(this.acompanhamentos.length / this.quantidadePorPagina);
+		this.paginas = Array(qnt).fill(1).map((x,i)=>i);
+		console.log(this.paginas);
   }
 
   async atualizarAcompanhamentos(pagina?: number, quantidade?: number) {
     pagina = pagina || 0;
     quantidade = quantidade || 10;
-    this.acompanhamentosVisiveis = this.acompanhamentos = await this.acompanhamentoService.obterAcompanhamentos(pagina, quantidade);
+    this.acompanhamentosVisiveis = await this.acompanhamentoService.obterAcompanhamentosPaginados(pagina, quantidade);
+		return this.acompanhamentosVisiveis;
   }
 
   onInputChange(e: any) {

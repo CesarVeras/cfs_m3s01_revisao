@@ -7,15 +7,15 @@ import IAluno from '../interfaces/IAluno';
   providedIn: 'root',
 })
 export class AlunoService {
+  alunos: IAluno[] = [];
+
   constructor(private httpClient: HttpClient) {}
 
-  async obterAlunos(page: number, amount: number) {
-    const start = page * amount;
-    const end = start + amount;
-    const alunos = await lastValueFrom(
+  async obterAlunos() {
+    this.alunos = await lastValueFrom(
       this.httpClient.get<IAluno[]>('http://localhost:3000/alunos')
     );
-    return alunos.slice(start, end);
+    return this.alunos;
   }
 
   filtrarAlunos(filtro: string, alunos: IAluno[]) {
@@ -23,5 +23,12 @@ export class AlunoService {
       aluno.nome.toLowerCase().includes(filtro.toLowerCase())
     );
     return alunosFiltrados;
+  }
+
+  async obterQuantidadeAlunos() {
+    if (this.alunos.length === 0) {
+      await this.obterAlunos();
+    }
+    return this.alunos.length;
   }
 }

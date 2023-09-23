@@ -9,6 +9,7 @@ import { privadoGuard, publicoGuard } from './guards/autenticacao.guard';
 import { NaoAutorizadoComponent } from './components/nao-autorizado/nao-autorizado.component';
 import { NaoEncontradoComponent } from './components/nao-encontrado/nao-encontrado.component';
 import { AcompanhamentosComponent } from './components/acompanhamentos/acompanhamentos.component';
+import { InicioComponent } from './components/inicio/inicio.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,16 @@ const routes: Routes = [
     path: 'labschool',
     component: BaseLayoutComponent,
     children: [
+      {
+        path: '',
+        redirectTo: '/labschool/inicio',
+        pathMatch: 'full',
+      },
+      {
+        path: 'inicio',
+        component: InicioComponent,
+        canActivate: [privadoGuard],
+      },
       {
         path: 'alunos',
         component: AlunosComponent,

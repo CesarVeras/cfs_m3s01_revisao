@@ -33,14 +33,15 @@
 <nav aria-label="Page navigation example">
 	<ul class="pagination">
 		<li class="page-item">
-			<a class="page-link" aria-label="Previous" (click)="atualizarAcompanhamentos(0, 10)">
+			<a class="page-link" aria-label="Previous" (click)="atualizarAcompanhamentos(0)">
 				<span aria-hidden="true">&laquo;</span>
 			</a>
 		</li>
-		<li class="page-item"><a class="page-link" (click)="atualizarAcompanhamentos(0, 10)">1</a></li>
-		<li class="page-item"><a class="page-link" (click)="atualizarAcompanhamentos(1, 10)">2</a></li>
+		<li class="page-item" *ngFor="let p of paginas">
+			<a class="page-link" (click)="atualizarAcompanhamentos(p)">{{ p + 1 }}</a>
+		</li>
 		<li class="page-item">
-			<a class="page-link" aria-label="Next" (click)="atualizarAcompanhamentos(1, 10)">
+			<a class="page-link" aria-label="Next" (click)="atualizarAcompanhamentos(paginas.length - 1)">
 				<span aria-hidden="true">&raquo;</span>
 			</a>
 		</li>

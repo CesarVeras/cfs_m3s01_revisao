@@ -15,6 +15,7 @@ import { BaseLayoutComponent } from './layouts/base-layout/base-layout.component
 import { NaoAutorizadoComponent } from './components/nao-autorizado/nao-autorizado.component';
 import { NaoEncontradoComponent } from './components/nao-encontrado/nao-encontrado.component';
 import { AcompanhamentosComponent } from './components/acompanhamentos/acompanhamentos.component';
+import { InicioComponent } from './components/inicio/inicio.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { AcompanhamentosComponent } from './components/acompanhamentos/acompanha
     NaoAutorizadoComponent,
     NaoEncontradoComponent,
     AcompanhamentosComponent,
+    InicioComponent,
   ],
   imports: [
     BrowserModule,
