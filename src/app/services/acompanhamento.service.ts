@@ -7,17 +7,26 @@ import IAcompanhamentos from '../interfaces/IAcompanhamentos';
   providedIn: 'root',
 })
 export class AcompanhamentoService {
+  acompanhamentos: IAcompanhamentos[] = [];
+
   constructor(private httpClient: HttpClient) {}
 
-  async obterAcompanhamentos(page: number, amount: number) {
-    const start = page * amount;
-    const end = start + amount;
-    const acompanhamentos = await lastValueFrom(
+  async obterAcompanhamentos() {
+    this.acompanhamentos = await lastValueFrom(
       this.httpClient.get<IAcompanhamentos[]>(
         'http://localhost:3000/acompanhamentos'
       )
     );
-    return acompanhamentos.slice(start, end);
+		return this.acompanhamentos;
+  }
+
+  async obterAcompanhamentosPaginados(page: number, amount: number) {
+    if (this.acompanhamentos.length === 0) {
+      await this.obterAcompanhamentos();
+    }
+    const start = page * amount;
+    const end = start + amount;
+    return this.acompanhamentos.slice(start, end);
   }
 
   filtrarAcompanhamentos(filtro: string, acompanhamentos: IAcompanhamentos[]) {
@@ -28,24 +37,37 @@ export class AcompanhamentoService {
   }
 
   async obterQuantidadeAcompanhamentos() {
-    const acompanhamentos = await lastValueFrom(
-      this.httpClient.get<IAcompanhamentos[]>(
-        'http://localhost:3000/acompanhamentos'
-      )
-    );
-    return acompanhamentos.length;
+    if (this.acompanhamentos.length === 0) {
+      await this.obterAcompanhamentos();
+    }
+    return this.acompanhamentos.length;
   }
 
   async obterPorcentagemConcluida() {
-    const acompanhamentos = await lastValueFrom(
-      this.httpClient.get<IAcompanhamentos[]>(
-        'http://localhost:3000/acompanhamentos'
-      )
-    );
+    if (this.acompanhamentos.length === 0) {
+      await this.obterAcompanhamentos();
+    }
     let qntConcluida = 0;
-    acompanhamentos.forEach((acom) => {
+    this.acompanhamentos.forEach((acom) => {
       if (acom.finalizado) qntConcluida++;
     });
-    return Math.floor((qntConcluida / acompanhamentos.length) * 100);
+    return Math.floor((qntConcluida / this.acompanhamentos.length) * 100);
   }
+
+  obterAcompanhamentosProximos() {
+    const acompanhamentos =  this.acompanhamentos.filter((a) => {
+			const dataFormatada = this.formatarData(a.data);
+			return dataFormatada.getTime() >= Date.now()
+		});
+		return acompanhamentos.sort((a1, a2) => {
+			const dataFormatada1 = this.formatarData(a1.data);
+			const dataFormatada2 = this.formatarData(a2.data);
+			return dataFormatada1.getTime() - dataFormatada2.getTime();
+		})
+  }
+
+	private formatarData(data: Date) {
+		const dataString = data.toString().split('/');
+		return new Date(+dataString[2], +dataString[1] - 1, +dataString[0]);
+	}
 }

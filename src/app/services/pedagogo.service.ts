@@ -7,6 +7,9 @@ import { lastValueFrom } from 'rxjs';
   providedIn: 'root',
 })
 export class PedagogoService {
+
+	pedagogos: IPedagogo[] = [];
+
   constructor(private httpClient: HttpClient) {}
 
   async cadastrarPedagogo(pedagogo: IPedagogo) {
@@ -20,15 +23,16 @@ export class PedagogoService {
   }
 
   async obterPedagogos() {
-    return lastValueFrom(
+		this.pedagogos = await lastValueFrom(
       this.httpClient.get<IPedagogo[]>('http://localhost:3000/pedagogos')
     );
+    return this.pedagogos;
   }
 
   async obterQuantidadePedagogos() {
-    const pedagogos = await lastValueFrom(
-      this.httpClient.get<IPedagogo[]>('http://localhost:3000/pedagogos')
-    );
-    return pedagogos.length;
+    if (this.pedagogos.length === 0) {
+			await this.obterPedagogos();
+		}
+    return this.pedagogos.length;
   }
 }

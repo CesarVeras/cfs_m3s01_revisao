@@ -28,14 +28,15 @@
 <nav aria-label="Page navigation example">
 	<ul class="pagination">
 		<li class="page-item">
-			<a class="page-link" aria-label="Previous" (click)="atualizarAlunos(0, 10)">
+			<a class="page-link" aria-label="Previous" (click)="atualizarAlunos(0)">
 				<span aria-hidden="true">&laquo;</span>
 			</a>
 		</li>
-		<li class="page-item"><a class="page-link" (click)="atualizarAlunos(0, 10)">1</a></li>
-		<li class="page-item"><a class="page-link" (click)="atualizarAlunos(1, 10)">2</a></li>
+		<li class="page-item" *ngFor="let p of paginas">
+			<a class="page-link" (click)="atualizarAlunos(p)">{{ p + 1 }}</a>
+		</li>
 		<li class="page-item">
-			<a class="page-link" aria-label="Next" (click)="atualizarAlunos(1, 10)">
+			<a class="page-link" aria-label="Next" (click)="atualizarAlunos(paginas.length-1)">
 				<span aria-hidden="true">&raquo;</span>
 			</a>
 		</li>

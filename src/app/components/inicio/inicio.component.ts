@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import IAcompanhamentos from 'src/app/interfaces/IAcompanhamentos';
 import { AcompanhamentoService } from 'src/app/services/acompanhamento.service';
 import { AlunoService } from 'src/app/services/aluno.service';
 import { PedagogoService } from 'src/app/services/pedagogo.service';
@@ -13,6 +14,7 @@ export class InicioComponent implements OnInit{
   pedagogosCadastrados: number = 0;
   acompanhamentosCadastrados: number = 0;
   acompanhamentosConcluidos: number = 0;
+	acompanhamentosProximos: IAcompanhamentos[] = [];
 
   constructor(
     private alunoService: AlunoService,
@@ -26,6 +28,7 @@ export class InicioComponent implements OnInit{
 		this.pedagogosCadastrados = await this.pedagogoService.obterQuantidadePedagogos();
 		this.acompanhamentosCadastrados = await this.acompanhamentoService.obterQuantidadeAcompanhamentos();
 		this.acompanhamentosConcluidos = await this.acompanhamentoService.obterPorcentagemConcluida();
+		this.acompanhamentosProximos = await this.acompanhamentoService.obterAcompanhamentosProximos();
 	}
 
 }

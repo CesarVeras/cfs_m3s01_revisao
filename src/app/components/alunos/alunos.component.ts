@@ -8,19 +8,28 @@ import { AlunoService } from 'src/app/services/aluno.service';
   styleUrls: ['./alunos.component.css'],
 })
 export class AlunosComponent implements OnInit {
-  alunos?: IAluno[];
-  alunosVisiveis?: IAluno[];
+  alunos?: IAluno[] = [];
+  alunosVisiveis?: IAluno[] = [];
+	paginas: number[] = [];
+  paginaAtual: number = 0;
+  quantidadePorPagina: number = 10;
 
   constructor(private alunoService: AlunoService) {}
 
   async ngOnInit() {
-    this.alunosVisiveis = this.alunos = await this.alunoService.obterAlunos(0, 20);	
+    this.alunos = await this.alunoService.obterAlunos();
+    await this.atualizarAlunos(this.paginaAtual);
+		
+		const qnt = Math.ceil(this.alunos.length / this.quantidadePorPagina);
+		this.paginas = Array(qnt).fill(1).map((x,i)=>i);
   }
 
-  async atualizarAlunos(pagina?: number, quantidade?: number) {
-    pagina = pagina || 0;
-    quantidade = quantidade || 20;
-    this.alunosVisiveis = this.alunos = await this.alunoService.obterAlunos(pagina, quantidade);
+  async atualizarAlunos(pagina?: number) {
+    this.paginaAtual = pagina || 0;
+		const start = this.paginaAtual * this.quantidadePorPagina;
+    const end = start + this.quantidadePorPagina;
+		this.alunosVisiveis = this.alunos?.slice(start, end);
+    return this.alunosVisiveis;
   }
 
   onInputChange(e: any) {

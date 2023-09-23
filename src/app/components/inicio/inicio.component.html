@@ -39,3 +39,22 @@
 		</div>
 	</div>
 </div>
+<div class="mt-4">
+	<h5>Próximos atendimentos</h5>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Data</th>
+				<th>Pedagogo</th>
+				<th>Aluno</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let acom of acompanhamentosProximos">
+				<td>{{acom.data}}</td>
+				<td>{{acom.pedagogo}}</td>
+				<td>{{acom.aluno}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
