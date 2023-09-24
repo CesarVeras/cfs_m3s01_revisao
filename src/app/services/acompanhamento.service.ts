@@ -1,29 +1,46 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { last, lastValueFrom } from 'rxjs';
-import IAcompanhamentos from '../interfaces/IAcompanhamentos';
+import { lastValueFrom } from 'rxjs';
+import IAcompanhamento from '../interfaces/IAcompanhamento';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AcompanhamentoService {
-  acompanhamentos: IAcompanhamentos[] = [];
+  acompanhamentos: IAcompanhamento[] = [];
 
   constructor(private httpClient: HttpClient) {}
 
   async obterAcompanhamentos() {
     this.acompanhamentos = await lastValueFrom(
-      this.httpClient.get<IAcompanhamentos[]>(
+      this.httpClient.get<IAcompanhamento[]>(
         'http://localhost:3000/acompanhamentos'
       )
     );
     return this.acompanhamentos;
   }
 
-  async cadastrarAcompanhamento(acompanhamento: IAcompanhamentos) {
+  async obterAcompanhamentoPorId(id: number) {
+    return await lastValueFrom(
+      this.httpClient.get<IAcompanhamento>(
+        `http://localhost:3000/acompanhamentos/${id}`
+      )
+    );
+  }
+
+  async cadastrarAcompanhamento(acompanhamento: IAcompanhamento) {
     return await lastValueFrom(
       this.httpClient.post(
         'http://localhost:3000/acompanhamentos',
+        acompanhamento
+      )
+    );
+  }
+
+	async atualizarAcompanhamento(acompanhamento: IAcompanhamento) {
+    return await lastValueFrom(
+      this.httpClient.put(
+        `http://localhost:3000/acompanhamentos/${acompanhamento.id}`,
         acompanhamento
       )
     );
@@ -38,7 +55,7 @@ export class AcompanhamentoService {
     return this.acompanhamentos.slice(start, end);
   }
 
-  filtrarAcompanhamentos(filtro: string, acompanhamentos: IAcompanhamentos[]) {
+  filtrarAcompanhamentos(filtro: string, acompanhamentos: IAcompanhamento[]) {
     const acompanhamentosFiltrados = acompanhamentos.filter((acom) =>
       acom.titulo.toLowerCase().includes(filtro.toLowerCase())
     );

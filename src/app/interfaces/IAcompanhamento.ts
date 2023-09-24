@@ -1,4 +1,5 @@
-export default interface IAcompanhamentos {
+export default interface IAcompanhamento {
+  id?: number;
   titulo: string;
   aluno: string;
   pedagogo: string;
