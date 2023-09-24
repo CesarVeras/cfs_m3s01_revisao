@@ -1,0 +1,38 @@
+<h3><strong>{{acompanhamentoId ? 'Editar' : 'Cadastrar'}} acompanhamento pedagógico</strong></h3>
+<form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
+	<div class="form-group">
+		<label for="titulo" class="form-label">Título do acompanhamento</label>
+		<input type="text" class="form-control" id="titulo" placeholder="insira o titulo do aluno" name="titulo"
+			formControlName="titulo">
+	</div>
+	<div class="form-group">
+		<label for="aluno" class="form-label">Aluno</label>
+		<select class="form-control" id="aluno" formControlName="aluno">
+			<option value="-1" disabled>Selecione...</option>
+			<option *ngFor="let aluno of alunos; let i" [value]="aluno.nome">{{aluno.nome}}</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label for="pedagogo" class="form-label">Pedagogo</label>
+		<select class="form-control" id="pedagogo" formControlName="pedagogo">
+			<option value="-1" disabled>Selecione...</option>
+			<option *ngFor="let pedagogo of pedagogos; let i" [value]="pedagogo.nome">{{pedagogo.nome}}</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label for="data" class="form-label">Data do acompanhamento</label>
+		<input type="date" class="form-control" id="data" name="data" formControlName="data">
+	</div>
+	<div class="form-group">
+		<label for="descricao" class="form-label">Descrição do acompanhamento</label>
+		<textarea class="form-control" id="descricao" rows="3" placeholder="insira a descrição" formControlName="descricao"></textarea>
+	</div>
+	<div class="form-group mt-3">
+		<input type="checkbox" class="form-checkbox-input" id="finalizado" formControlName="finalizado">&nbsp;
+		<label for="finalizado" class="form-label">Finalizado</label>
+	</div>
+	<div class="d-flex flex-row justify-content-between mt-3">
+		<button type="submit" class="btn btn-primary" [disabled]="false">{{acompanhamentoId ? 'Editar' : 'Cadastrar'}} acompanhamento</button>
+		<button class="btn btn-secondary" type="button" routerLink="/labschool/acompanhamentos">Voltar</button>
+	</div>
+</form>

@@ -45,7 +45,6 @@ export class CadastroComponent {
       this.cadastroForm.get('confirmacaoSenha')?.value
     )
       return;
-    console.log(this.cadastroForm.value);
     const pedagogo: IPedagogo = {
       nome: this.cadastroForm.get('nome')?.value,
       telefone: this.cadastroForm.get('telefone')?.value,
